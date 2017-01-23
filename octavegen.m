@@ -1,7 +1,15 @@
 function d=octavegen(path)
+info=imfinfo(path);
+if(info.Width<=240&&info.Height<=180)
+    disp('Error Lower Resolution than minimum Required');
+    d=-1;
+    return;
+end
 image=rgb2gray(imread(path));
+
+
 %image=imread(path);
-scalef=0.5;
+scalef=0.8;
 sigmaf=sqrt(2);
 noctaves=4;
 nblur_levels=5;
@@ -16,8 +24,8 @@ j=0;
 %j=j+1;
 
 %scaleimage{j}=imresize(image,scalef*i*-1+1);
-%s=strcat("samples/",int2str(scalef*i));;
-%s=strcat(s,".png");
+%s=strcat('samples/',int2str(scalef*i));;
+%s=strcat(s,'.png');
 %imwrite(scaleimage{j},s);
 %figure,imshow(scaleimage{j});
 
@@ -27,57 +35,59 @@ j=0;
 
 
 for i=1:noctaves;
-j=j+1;
-scaleimage{j}=imresize(image,scalef^i);
-
-
-
-
-end
-disp(j);
-
-imwrite(image,"output/gray.png");
-for k=1:j 
-%disp(k);
-[r,c]=size(scaleimage{k});
-
-disp(r);
-disp(c);
-octs{k}=zeros(r,c,nblur_levels);
-DOG{k}=zeros(r,c,nblur_levels-1);
-octave=octs{k};
-for p=1:nblur_levels
-%guass=fspecial("gaussian",4,sigmaf^p);
-%octave(:,:,p)=imfilter(scaleimage{k},guass,'same');
-octave(:,:,p)=conv2(scaleimage{k},gaussian2d(4,sigmaf*p),"same");
-
-path=strcat("output/octaves/scale-",strcat(int2str(k),strcat("-",strcat(int2str(p),".png"))));
-
-%uint8 to convert to range 0,255 else all white is generated
-octave(:,:,p)=uint8(octave(:,:,p))
-imwrite(uint8(octave(:,:,p)),path);
-
-
-%disp(octave(:,:,p));
-
-%disp(p);
-
-if(p>1)
-
-% if p >1 
-% difference of guassian
-
-DOG{k}(:,:,p-1)=octave(:,:,p-1)-octave(:,:,p);
-path=strcat("output/dog/dog-",strcat(int2str(k),strcat("-",strcat(int2str(p),".png")))
-imwrite(uint8(DOG{k}(:,:,p-1)),path);
-end
-
-end
-octs{k}=octave(:,:,:);
-
+    j=j+1;
+    scaleimage{j}=imresize(image,scalef^i);
+    
+    
+    
+    
 end
 
 
+imwrite(image,'output/gray.png');
 
-endfunction
+for k=1:j
+    
+    [r,c]=size(scaleimage{k});
+    
+    
+    octs{k}=zeros(r,c,nblur_levels);
+    DOG{k}=zeros(r,c,nblur_levels-1);
+    octave=octs{k};
+    
+    for p=1:nblur_levels
+        %old
+        %octave(:,:,p)=conv2((scaleimage{k}),(gaussian2d(4,sigmaf*p)),'same');
+        
+        octave(:,:,p)=imgaussfilt(scaleimage{k},sigmaf^p);
+        
+        path=strcat('output/octaves/scale-',strcat(int2str(k),strcat('-',strcat(int2str(p),'.png'))));
+        
+        %uint8 to convert to range 0,255 else all white is generated
+        %octave(:,:,p)=uint8(octave(:,:,p))
+        imwrite(uint8(octave(:,:,p)),path);
+        
+        
+        
+        
+        if(p>1)
+            
+            % if p >1
+            % difference of guassian
+            DOG{k}(:,:,p-1)=octave(:,:,p-1)-octave(:,:,p);
+            path=strcat('output/dog/dog-',strcat(int2str(k),strcat('-',strcat(int2str(p),'.png'))));
+            imwrite( (DOG{k}(:,:,p-1)),path);
+        end
+        
+        
+    end
+    octs{k}=octave(:,:,:);
+    
+end
+d=[2];
+
+d=DOG;
+
+
+end
 

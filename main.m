@@ -1,5 +1,9 @@
 
 %sift 
-octaves=octavegen("samples/brose.png")
-disp("generated octaves");
-diff_of_blur(octaves);
+dog=octavegen('samples/nat.jpg')
+if(iscell(dog)==0)
+   disp('error');
+end
+disp('generated octaves');
+localextrema(dog);
+
