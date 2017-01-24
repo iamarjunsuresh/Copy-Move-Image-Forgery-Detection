@@ -1,6 +1,6 @@
 
 %sift 
-dog=octavegen('samples/nat.jpg')
+dog=octavegen('samples/prave.bmp')
 if(iscell(dog)==0)
    disp('error');
 end

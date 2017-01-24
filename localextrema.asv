@@ -15,7 +15,7 @@ for k=1:j
     
     copyimage=imread(strcat('output/scales/scale-',strcat(int2str(k),'.png')));
     disp(size(copyimage));
-    copyimage=uint8(copyimage);
+    copyimage=uint8(copyimage)
     copyimage=cat(3,copyimage,copyimage,copyimage);
 %     hold off
 %     image(DOG{k}(:,:,1));
