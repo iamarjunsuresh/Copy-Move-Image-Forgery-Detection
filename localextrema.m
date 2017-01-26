@@ -29,11 +29,20 @@ for k=1:j
                 lowermat=im(m-1:m+1,n-1:n+1,l+1);
                 neighbour8=im(m-1:m+1,n-1:n+1,l);
                 largest=max(uppermat(:));
+                
                 largest2=max(lowermat(:));
                 largestinsame=max(neighbour8(:));
+                
+                smallest=min(uppermat(:));
+                smallest2=min(lowermat(:));
+                smallestinsame=min(neighbour8(:));
                 %disp(largest);
-                %disp(largestinsame);
-                if(largestinsame>largest&&largestinsame>largest2&&largestinsame==im(m,n,1))
+                if(smallestinsame<0)
+                    
+               % disp(smallestinsame);
+                %return;
+                end
+                if((largestinsame>largest&&largestinsame>largest2)&&largestinsame==im(m,n,1))
                    
                                       copyimage(m,n,1)=255;
                                       copyimage(m,n,2)=0;
@@ -41,7 +50,12 @@ for k=1:j
                    
                    
                 end
+                if(smallestinsame<smallest&&smallestinsame<smallest2&&smallestinsame==im(m,n,l))
+                    
+                    copyimage(m,n,1)=255;
                 
+                    copyimage(m,n,2)=0;
+                    copyimage(m,n,3)=0;
              end
          end
            

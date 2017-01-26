@@ -59,7 +59,7 @@ for k=1:j
         %old
         %octave(:,:,p)=conv2((scaleimage{k}),(gaussian2d(4,sigmaf*p)),'same');
       % sigmaf0=sigmaf^(1/nblur_levels)^((p-1)*nblur_levels+k)
-        octave(:,:,p)=imgaussfilt(scaleimage{k},sigmaf^p);
+        octave(:,:,p)=imgaussfilt(scaleimage{k},sigmafp);
         
         path=strcat('output/octaves/scale-',strcat(int2str(k),strcat('-',strcat(int2str(p),'.png'))));
         

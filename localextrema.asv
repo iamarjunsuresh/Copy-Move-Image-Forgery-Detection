@@ -15,7 +15,7 @@ for k=1:j
     
     copyimage=imread(strcat('output/scales/scale-',strcat(int2str(k),'.png')));
     disp(size(copyimage));
-    copyimage=uint8(copyimage)
+    copyimage=uint8(copyimage);
     copyimage=cat(3,copyimage,copyimage,copyimage);
 %     hold off
 %     image(DOG{k}(:,:,1));
@@ -29,8 +29,13 @@ for k=1:j
                 lowermat=im(m-1:m+1,n-1:n+1,l+1);
                 neighbour8=im(m-1:m+1,n-1:n+1,l);
                 largest=max(uppermat(:));
+                
                 largest2=max(lowermat(:));
                 largestinsame=max(neighbour8(:));
+                
+                smallest=min(uppermat(:));
+                smallest2=min(lowermat(:));
+                smallestinsame=min(neighbour8(:));
                 %disp(largest);
                 %disp(largestinsame);
                 if(largestinsame>largest&&largestinsame>largest2&&largestinsame==im(m,n,1))
@@ -41,6 +46,7 @@ for k=1:j
                    
                    
                 end
+                if(smallestinsame<smallest&&smallestin)
                 
              end
          end
