@@ -58,9 +58,10 @@ for k=1:j
     for p=1:nblur_levels
         %old
         %octave(:,:,p)=conv2((scaleimage{k}),(gaussian2d(4,sigmaf*p)),'same');
-      % sigmaf0=sigmaf^(1/nblur_levels)^((p-1)*nblur_levels+k)
-        octave(:,:,p)=imgaussfilt(scaleimage{k},sigmaf^p);
-        
+       sigmaf0=sigmaf^(1/nblur_levels)^((p-1)*nblur_levels+k)
+        %octave(:,:,p)=imgaussfilt(scaleimage{k},sigmaf^p);
+         f=fspecial('gaussian',[1,floor(6*sigmaf^p)],sigmaf0);
+         octave(:,:,p)=conv2(conv2(scaleimage{k},f,'same'),f,'same');
         path=strcat('output/octaves/scale-',strcat(int2str(k),strcat('-',strcat(int2str(p),'.png'))));
         
         %uint8 to convert to range 0,255 else all white is generated

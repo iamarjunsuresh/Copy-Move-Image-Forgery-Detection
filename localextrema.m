@@ -33,6 +33,7 @@ for k=1:j
                 largest2=max(lowermat(:));
                 largestinsame=max(neighbour8(:));
                 
+                
                 smallest=min(uppermat(:));
                 smallest2=min(lowermat(:));
                 smallestinsame=min(neighbour8(:));
@@ -42,20 +43,49 @@ for k=1:j
                % disp(smallestinsame);
                 %return;
                 end
-                if((largestinsame>largest&&largestinsame>largest2)&&largestinsame==im(m,n,1))
+                if((largestinsame>largest&&largestinsame>largest2)&&largestinsame==im(m,n,1)&&im(m,n,l)>2)
                    
                                       copyimage(m,n,1)=255;
                                       copyimage(m,n,2)=0;
                                       copyimage(m,n,3)=0;
+                                      try
+                                      
+                                      for ui=-3:3
+                                          copyimage(m+ui,n,1)=255;
+                                      copyimage(m+ui,n,2)=0;
+                                      copyimage(m+ui,n,3)=0;
+                                      copyimage(m,n+ui,1)=255;
+                                      copyimage(m,n+ui,2)=0;
+                                      copyimage(m,n+ui,3)=0;
+                                      end
+                                      
+                                      catch me
+                                          
+                                      end
+                                          
                    
                    
                 end
-                if(smallestinsame<smallest&&smallestinsame<smallest2&&smallestinsame==im(m,n,l))
+                if(smallestinsame<smallest&&smallestinsame<smallest2&&smallestinsame==im(m,n,l)&&im(m,n,l)<-2)
                     
                     copyimage(m,n,1)=255;
                 
                     copyimage(m,n,2)=0;
                     copyimage(m,n,3)=0;
+                     try
+                                      
+                                      for ui=-6:6
+                                          copyimage(m+ui,n,1)=255;
+                                      copyimage(m+ui,n,2)=0;
+                                      copyimage(m+ui,n,3)=0;
+                                      copyimage(m,n+ui,1)=255;
+                                      copyimage(m,n+ui,2)=0;
+                                      copyimage(m,n+ui,3)=0;
+                                      end
+                                      
+                                      catch me
+                                          
+                                      end
              end
          end
            
