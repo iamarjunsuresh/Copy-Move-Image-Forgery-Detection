@@ -43,7 +43,7 @@ for k=1:j
                % disp(smallestinsame);
                 %return;
                 end
-                if((largestinsame>largest&&largestinsame>largest2)&&largestinsame==im(m,n,1)&&im(m,n,l)>2)
+                if((largestinsame>largest&&largestinsame>largest2)&&largestinsame==im(m,n,1)&&im(m,n,l)>dogmax)
                    
                                       copyimage(m,n,1)=255;
                                       copyimage(m,n,2)=0;
@@ -66,7 +66,8 @@ for k=1:j
                    
                    
                 end
-                if(smallestinsame<smallest&&smallestinsame<smallest2&&smallestinsame==im(m,n,l)&&im(m,n,l)<-2)
+                dogmax=2;
+                if(smallestinsame<smallest&&smallestinsame<smallest2&&smallestinsame==im(m,n,l)&&im(m,n,l)<-dogmax)
                     
                     copyimage(m,n,1)=255;
                 
@@ -74,7 +75,7 @@ for k=1:j
                     copyimage(m,n,3)=0;
                      try
                                       
-                                      for ui=-6:6
+                                      for ui=-4:4
                                           copyimage(m+ui,n,1)=255;
                                       copyimage(m+ui,n,2)=0;
                                       copyimage(m+ui,n,3)=0;
