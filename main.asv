@@ -7,5 +7,5 @@ end
 disp('generated octaves');
 keys=localextrema(dog);
 
-%orientation_assign(keys);
+orientation_assign
 

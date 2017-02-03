@@ -1,18 +1,19 @@
-function [ keypoints ] = localextrema( DOG )
+function [ d ,sx] = localextrema( DOG )
 %LOCALEXTREMA SIFT -step 2 
 %   Determine the local extrema of DOG images 
 
 [venda,j]=size(DOG);
 [venda,venda1,nblur_levels]=size(DOG{1});
 
-
-
+keypoints=cell(j,1,2);
+sz=cell(j);
+idx=0;
 
 for k=1:j
     disp(strcat('finding local extrema for octave ',int2str(k)));
     
    
-    
+   idx=0; 
     copyimage=imread(strcat('output/scales/scale-',strcat(int2str(k),'.png')));
     disp(size(copyimage));
     copyimage=uint8(copyimage);
@@ -45,9 +46,15 @@ for k=1:j
                 end
                 if((largestinsame>largest&&largestinsame>largest2)&&largestinsame==im(m,n,1)&&im(m,n,l)>dogmax)
                    
+                    idx=idx+1;
+                    keypoints{k,idx,1}=m;
+
+                    
+                    keypoints{k,idx,2}=n;
                                       copyimage(m,n,1)=255;
                                       copyimage(m,n,2)=0;
                                       copyimage(m,n,3)=0;
+                                      
                                       try
                                       
                                       for ui=-3:3
@@ -68,6 +75,13 @@ for k=1:j
                 end
                 dogmax=2;
                 if(smallestinsame<smallest&&smallestinsame<smallest2&&smallestinsame==im(m,n,l)&&im(m,n,l)<-dogmax)
+                   idx=idx+1;
+                    keypoints{k,idx,1}=m;
+
+                    
+                    keypoints{k,idx,2}=n;
+
+                    
                     
                     copyimage(m,n,1)=255;
                 
@@ -94,8 +108,13 @@ for k=1:j
    end
    
    imwrite(copyimage,strcat('output/keypoints/key',strcat(int2str(k),'.png')));
-end
+   end
+sz{k}=idx;
 
 
 end
 
+
+
+d=keypoints;
+end
