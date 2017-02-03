@@ -5,7 +5,7 @@ if(iscell(dog)==0)
    disp('error');
 end
 disp('generated octaves');
-keys=localextrema(dog);
+[keys,sz]=localextrema(dog);
 
-%orientation_assign(keys);
+[keys,orientations,size]=orientation_assign(keys,sz);
 

@@ -1,4 +1,4 @@
-function [ d ,sx] = localextrema( DOG )
+function [ d ,sz] = localextrema( DOG )
 %LOCALEXTREMA SIFT -step 2 
 %   Determine the local extrema of DOG images 
 
@@ -6,7 +6,7 @@ function [ d ,sx] = localextrema( DOG )
 [venda,venda1,nblur_levels]=size(DOG{1});
 
 keypoints=cell(j,1,2);
-sz=cell(j);
+sz=zeros(j);
 idx=0;
 
 for k=1:j
@@ -109,7 +109,7 @@ for k=1:j
    
    imwrite(copyimage,strcat('output/keypoints/key',strcat(int2str(k),'.png')));
    end
-sz{k}=idx;
+sz(k)=idx;
 
 
 end
