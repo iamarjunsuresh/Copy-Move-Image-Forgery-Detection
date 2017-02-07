@@ -27,10 +27,11 @@ for ff=m-1:m+1
 if(ff~=gg&&ff-2>0&&gg-2>0&&ff+2<=mx&&gg+2<=my)
     %calculae magnitude and orientation
     magsqr=(im((ff-1),gg)-im(ff+1,gg))^2+(im(ff,gg-1)-im(ff,gg+1))^2;
-    mag=sqrt(magsqr);
-angle=atand((im((ff-1),gg)-im(ff+1,gg))/(im(ff,gg-1)-im(ff,gg+1)));
+    mag=sqrt(double(magsqr));
+angle=atand(double((im((ff-1),gg)-im(ff+1,gg))/(im(ff,gg-1)-im(ff,gg+1))));
 
-bucket=idivide(angle,10,'ceil');
+bucket=idivide(uint16(angle),10,'ceil');
+bucket=bucket+1;
 histo(bucket)=histo(bucket)+mag;
 
 
@@ -44,13 +45,13 @@ end
 % adding existing keypoint to liust
 
 sz(k)=sz(k)+1;
-orient{k,g,1}=indexofelement(1)*10;
+orient{k,g,1}=indexofmaxelement(1)*10;
 r=16;
 
     %check if any keypoint is more than 0.8
 for i=1:36
 if(histo(i)>0.8*maxmag)
-sz{k}=sz{k}+1;
+sz(k)=sz(k)+1;
 keypoints{k,g,1}=ff;
 keypoints{k,g,2}=gg;
 orient{k,g,1}=i*10;
