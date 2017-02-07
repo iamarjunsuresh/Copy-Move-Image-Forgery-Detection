@@ -9,8 +9,9 @@ for k=1:numofsets
     im=imread(strcat('output/scales/scale-',int2str(k),'.png'));
     [height,width]=size(im);
     for i=1:size1(k)
-        p=keys{k}{i}{1};
-        q=keys{k}{i}{2};
+        %disp(size(keys{k,:,:}));
+        p=keys{k,i,1};
+        q=keys{k,i,2};
         if(p>16&&q>16&&p<=(height-16)&&q<=(width-16))
             for m=-2:2
                 for n=-2:2
@@ -23,8 +24,9 @@ for k=1:numofsets
                             dy=im(f,h-1)-im(f,h+1);
                             dx=im(f-1,h)-im(f+1,h);
                             
-                            angle=atand(dy/dx);
+                            angle=atand(double(dy/dx));
                             bin=idivide(uint16(angle),45,'ceil')
+                            bin=bin+1;
                             histo(bin)=histo(bin)+(1/sqrt((p-f)^2+(q-h)^2));
                         end
                     end

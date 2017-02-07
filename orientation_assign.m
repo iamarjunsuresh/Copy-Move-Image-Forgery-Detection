@@ -1,7 +1,14 @@
 function [keys,orientation,size1]=orientiation_assign(keypoints,sz)
 
-%[j,nkey,no]
+% %[j,nkey,no]
 d=size(keypoints);
+% disp(d);
+% disp(sz(3));
+% keys=1;
+% orientation=1;
+% size1=2;
+% 
+% return;
 j=d(1);
 nkey=d(2);
 orient=cell(j,nkey,1);
@@ -11,10 +18,7 @@ for (k=1:j)
     im=imread(strcat('output/scales/scale-',strcat(int2str(k),'.png')));
     %copyimage=imread(strcat('output/scales/scale-',strcat(int2str(k),'.png')));
     [mx,my]=size(im);
-    
-
-        
-        histo=zeros(36);
+    histo=zeros(36);
 for g=1:sz(k)
 
 m=keypoints{k,g,1};
@@ -51,6 +55,7 @@ r=16;
     %check if any keypoint is more than 0.8
 for i=1:36
 if(histo(i)>0.8*maxmag)
+    disp('over');
 sz(k)=sz(k)+1;
 keypoints{k,g,1}=ff;
 keypoints{k,g,2}=gg;
@@ -66,6 +71,7 @@ end
     keys=keypoints;
     orientation=orient;
     size1=sz;
+    disp(sz);
     
 
 
