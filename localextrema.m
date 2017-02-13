@@ -44,6 +44,7 @@ for k=1:j
                % disp(smallestinsame);
                 %return;
                 end
+                dogmax=5;
                 if((largestinsame>largest&&largestinsame>largest2)&&largestinsame==im(m,n,1)&&im(m,n,l)>dogmax)
                    
                     idx=idx+1;
@@ -73,7 +74,7 @@ for k=1:j
                    
                    
                 end
-                dogmax=2;
+                
                 if(smallestinsame<smallest&&smallestinsame<smallest2&&smallestinsame==im(m,n,l)&&im(m,n,l)<-dogmax)
                    idx=idx+1;
                     keypoints{k,idx,1}=m;
