@@ -8,19 +8,15 @@ vn=0;
 for k=1:numofsets
     im=imread(strcat('output/scales/scale-',int2str(k),'.png'));
     [height,width]=size(im);
-    for i=1:size1(k)
+    for i=1:100%size1(k)
         %disp(size(keys{k,:,:}));
         p=double(keys{k,i,1});
         q=keys{k,i,2};
-        disp(p);
-        disp(q);
         if((p>16&&q>16)&&(p<=(height-16)&&q<=(width-16)))
             for m=-2:2
                 for n=-2:2
                     idx=0;
-                   if(m==0||n==0)
-                       continue;
-                   end
+                   if()
                        
                        
                  histo=zeros(8)

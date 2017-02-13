@@ -8,18 +8,17 @@ disp('generated octaves');
 [keys,sz]=localextrema(dog);
 
 [keys,orientations,size1]=orientation_assign(keys,sz);
-[octaves,v]=size(size1);
+octaves=size(size1);
 siftvector=featurevector(keys,size1,orientations);
-[octaves,v]=size(size1);
-for a=1:octaves
+[no_of_siftvectors,b]=size(siftvector);
+for a=1:size(size1)
     ima=imread(strcat('output/scales/scale-',int2str(a),'.png'))
      ima=uint8(ima);
     ima=cat(3,ima,ima,ima);
-    no_of_siftvectors=size1(a);
     for i=1:no_of_siftvectors
         for j=i+1:no_of_siftvectors
-            v1=siftvector{a,i,:};
-            v2=siftvector{a,j,:};
+            v1=siftvector{k,i,:};
+            v2=siftvector(k,j,:);
             if(v1==v2)
                 disp('match found');
                 x1=keys{a,i,1};
@@ -33,6 +32,5 @@ for a=1:octaves
         end
         disp(strcat('completed:',int2str(i/no_of_siftvectors*100)));
     end
-    imwrite(ima,strcat('output/forgery/result',int2str(a),'.png'));
-
+    imwrite(ima,strcat('output/forgery/result',int2str(a)'.png')
 end
