@@ -11,7 +11,7 @@ image=rgb2gray(imread(path));
 %image=imread(path);
 scalef=0.8;
 sigmaf=sqrt(2);
-noctaves=4;
+noctaves=1;
 nblur_levels=5;
 
 j=0;
