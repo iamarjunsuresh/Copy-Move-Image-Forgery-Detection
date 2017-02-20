@@ -49,7 +49,9 @@ end
 % adding existing keypoint to liust
 
 sz(k)=sz(k)+1;
-orient{k,g,1}=indexofmaxelement(1)*10;
+keypoints{k,sz(k),1}=ff;
+keypoints{k,sz(k),2}=gg;
+orient{k,sz(k),1}=indexofmaxelement(1)*10;
 r=16;
 
     %check if any keypoint is more than 0.8

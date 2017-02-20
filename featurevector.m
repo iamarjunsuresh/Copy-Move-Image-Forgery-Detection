@@ -85,7 +85,7 @@ for k=1:numofsets
         end
         
   disp(vect)
-  input('vect','s');
+  %input('vect','s');
 
 fvectors=vect;
 
