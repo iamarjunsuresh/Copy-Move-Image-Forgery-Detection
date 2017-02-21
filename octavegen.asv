@@ -39,7 +39,7 @@ for i=1:noctaves;
     j=j+1;
     scaleimage{j}=imresize(image,scalef^i);
     imwrite(scaleimage{j},strcat('output/scales/scale-',strcat(int2str(j),'.png')));
-    imwrite(imresize(colorimage,scalef^i),strcat('output/scales/color-scale-',strcat(int2str(j),'.png')))
+    imwrite
     
     
 end
