@@ -1,6 +1,6 @@
 echo off;
 %sift 
-dog=octavegen('samples/stonehenge.bmp')
+dog=octavegen('samples/prave.bmp')
 if(iscell(dog)==0)
    disp('error');
 end
@@ -15,6 +15,8 @@ siftvector=featurevector(keys,size1,orientations);
 disp(siftvector);
 input('sd','s');
 [octaves,v]=size(size1);
+figure;
+hold on;
 for a=1:octaves
     ima=imread(strcat('output/scales/color-scale-',int2str(a),'.png'))
     [w,h]=size(ima)
@@ -22,6 +24,7 @@ for a=1:octaves
    %  ima=uint8(ima);
     imacopy=ima;
     imacopy1=ima;
+    imagesc(ima);
     no_of_siftvectors=size1(a);
     for i=1:no_of_siftvectors-1
         for j=i+1:no_of_siftvectors
@@ -55,9 +58,10 @@ for a=1:octaves
                         imacopy1(x1+t1,y1,colorm)=mod(i,255);
                         imacopy1(x1,y1+t1,colorm)=mod(i,255);
                         imacopy1(x2+t1,y2,colorm)=mod(i,255);
+                      line([x1,x2],[y1,y2],'Color','r','LineWidth',2);
                       
                      imacopy1(x2,y2+t1,colorm)=mod(i,255);
-                    
+                    imgcopy1 = insertShape(imgcopy1,'Line',[x1 y1 x2 y2],'LineWidth',2,'Color','blue');
                 end
                 
              
