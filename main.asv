@@ -62,11 +62,9 @@ for a=1:octaves
                         disp(y2);
                            
                         % sd=input('pause:','s');         
-                         line([y1,y2],[x1,x2],'LineWidth',2);
+                         line([x1,x2],[y1,y2],'Color','r','LineWidth',2);
                         imacopy1(x2,y2+t1,colorm)=mod(i,255);
                         imacopy1 = insertShape(imacopy1,'Line',[y1 x1 y2 x2],'LineWidth',1,'Color','red');
-                        i=i+5;
-                        continue;
                 end
             end
         end
