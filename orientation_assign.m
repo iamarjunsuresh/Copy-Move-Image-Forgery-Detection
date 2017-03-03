@@ -57,11 +57,11 @@ r=16;
     %check if any keypoint is more than 0.8
 for i=1:36            
     if(histo(i)>0.8*maxmag)
-        % disp('over');
-        % sz(k)=sz(k)+1;
-        % keypoints{k,sz(k),1}=ff;
-        % keypoints{k,sz(k),2}=gg;
-        % orient{k,sz(k),1}=i*10;
+%         disp('over');
+%          sz(k)=sz(k)+1;
+%          keypoints{k,sz(k),1}=ff;
+%          keypoints{k,sz(k),2}=gg;
+%          orient{k,sz(k),1}=i*10;
 
     end
 end

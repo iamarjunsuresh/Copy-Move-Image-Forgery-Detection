@@ -25,7 +25,7 @@ for a=1:octaves
     imacopy1=ima;
     imagesc(ima);
     no_of_siftvectors=size1(a);
-    %no_of_siftvectors=100;
+% no_of_siftvectors=100;
     for i=1:no_of_siftvectors-1
         for j=i+1:no_of_siftvectors
             matchfo=1;
@@ -79,12 +79,13 @@ for a=1:octaves
                         disp(y2);
                         disp(i);
                         disp(j);
-                        sd=input('pause:');
+                        if(x1~=x2)
+                                sd=input('pause:');
+                        end;
                  end
         end
-        disp(strcat('completed:',int2str(i/no_of_siftvectors*100)));
-    
-    end
+        disp(strcat('completed:',int2str(i/no_of_siftvectors*100))); 
+end
     
     imwrite(imacopy1,strcat('output/forgery/result',int2str(a),'.png'));
   
