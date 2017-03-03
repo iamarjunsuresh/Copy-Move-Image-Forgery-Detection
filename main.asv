@@ -41,7 +41,7 @@ for a=1:octaves
                     break;
                 end
             end
-            if(matchfo==1&allzero==0)%&~(keys{a,i,1}==keys{a,j,1}&keys{a,i,2}==keys{a,j,2}))
+            if(matchfo==1&allzero==)%&~(keys{a,i,1}==keys{a,j,1}&keys{a,i,2}==keys{a,j,2}))
                 disp('match found');
                 
                 x1=keys{a,i,1};
@@ -79,7 +79,7 @@ for a=1:octaves
                         disp(y2);
                         disp(i);
                         disp(j);
-                        sd=input('pause:');
+                       % sd=input('pause:');
                  end
         end
         disp(strcat('completed:',int2str(i/no_of_siftvectors*100)));
