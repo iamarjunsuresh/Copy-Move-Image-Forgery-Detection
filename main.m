@@ -25,11 +25,19 @@ for a=1:octaves
     imacopy1=ima;
     imagesc(ima);
     no_of_siftvectors=size1(a);
+    %no_of_siftvectors=100;
     for i=1:no_of_siftvectors-1
         for j=i+1:no_of_siftvectors
-            v1=siftvector{a,i,:};
-            v2=siftvector{a,j,:};
-            if(v1==v2)%&~(keys{a,i,1}==keys{a,j,1}&keys{a,i,2}==keys{a,j,2}))
+            matchfo=1;
+            for m=1:128
+            v1=siftvector{a,i,m};
+            v2=siftvector{a,j,m};
+            if(v1~=v2)
+                matchfo=0;
+                break;
+            end
+            end
+            if(matchfo==1)%&~(keys{a,i,1}==keys{a,j,1}&keys{a,i,2}==keys{a,j,2}))
                 disp('match found');
                 x1=keys{a,i,1};
                 y1=keys{a,i,2};
@@ -51,29 +59,27 @@ for a=1:octaves
            
                         imacopy1(x2,y2+t1,:)=[0,0,0];
                         imacopy1(x2+t1,y2,:)=[0,0,0];
-                        
                         imacopy1(x1+t1,y1,colorm)=mod(i,255);
                         imacopy1(x1,y1+t1,colorm)=mod(i,255);
                         imacopy1(x2+t1,y2,colorm)=mod(i,255);
-                        
-                        disp(x1);
-                        disp(y1);
-                        disp(x2);
-                        disp(y2);
-                           
-                        % sd=input('pause:','s');         
-                         line([y1,y2],[x1,x2],'LineWidth',2);
                         imacopy1(x2,y2+t1,colorm)=mod(i,255);
-                        imacopy1 = insertShape(imacopy1,'Line',[y1 x1 y2 x2],'LineWidth',1,'Color','red');
-                        i=i+5;
-                        continue;
+                        
+                            
+                        
+                        
                 end
-            end
+                 line([y1,y2],[x1,x2],'LineWidth',2);
+                 imacopy1 = insertShape(imacopy1,'Line',[x1 y1 x2 y2],'LineWidth',2);
+                   disp(y1);
+                        disp(x2);
+                        disp(y2); 
+                        disp(x1);
+                           
+                       sd=input('pause:','s');   
+end
         end
         disp(strcat('completed:',int2str(i/no_of_siftvectors*100)));
-       if(flag)
-           break;
-       end;
+    
     end
     imwrite(imacopy1,strcat('output/forgery/result',int2str(a),'.png'));
 
