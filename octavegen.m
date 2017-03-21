@@ -10,7 +10,7 @@ image=rgb2gray(colorimage);
 
 
 %image=imread(path);
-scalef=0.8;
+scalef=1;
 sigmaf=sqrt(2);
 noctaves=1;
 nblur_levels=5;

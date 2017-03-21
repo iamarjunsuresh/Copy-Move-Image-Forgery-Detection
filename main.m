@@ -1,6 +1,6 @@
 echo off;
 %sift 
-dog=octavegen('samples/set1.bmp')
+dog=octavegen('samples/prave.bmp')
 if(iscell(dog)==0)
    disp('error');
 end
@@ -47,7 +47,7 @@ for a=1:octaves
             end
             %disp(matchfo);
             %zzz=input('ps');
-            if(matchfo>100&allzero==0)%&~(keys{a,i,1}==keys{a,j,1}&keys{a,i,2}==keys{a,j,2}))
+            if(matchfo>110&allzero==0)%&~(keys{a,i,1}==keys{a,j,1}&keys{a,i,2}==keys{a,j,2}))
                 disp('match found');
                
                 x1=keys{a,i,1};
@@ -55,28 +55,28 @@ for a=1:octaves
                 x2=keys{a,j,1};
                 y2=keys{a,j,2};
                
-                %imacopy(x1,y1,1)=255;
-                %imacopy(x2,y2,1)=255;
-                %apreadout
+                imacopy(x1,y1,1)=255;
+                imacopy(x2,y2,1)=255;
+              %  apreadout
                 surr=1;
-%                 while(surr<8&((x1-surr)>0)&((x2-surr)>0)&((y1-surr)>0)&((y2-surr)>0)&((x1+surr)<w)&((x2+surr)<w)&((y1+surr)<h)&((y2+surr)<h)&(imacopy(x1,y1,1)==imacopy(x1,y1,2)&imacopy(x1,y1,2)==imacopy(x1,y1,3))&(imacopy(x1-surr:x1+surr,y1-surr:y1+surr,1)==imacopy(x2-surr:x2+surr,y2-surr:y2+surr,1)))
-%                     surr=surr+1;
-%                 end
-%                 surr=surr-1;
-%                 %disp(surr);
-%             
-%                 color=255*rand;
-%                 colorm=mod(i,3)+1;
-%                 for t1=-surr:surr
-%                         imacopy1(x1+t1,y1,:)=[0,0,0];
-%                         imacopy1(x1,y1+t1,:)=[0,0,0];
-%                         imacopy1(x2,y2+t1,:)=[0,0,0];
-%                         imacopy1(x2+t1,y2,:)=[0,0,0];
-%                         imacopy1(x1+t1,y1,colorm)=mod(i,255);
-%                         imacopy1(x1,y1+t1,colorm)=mod(i,255);
-%                         imacopy1(x2+t1,y2,colorm)=mod(i,255);
-%                         imacopy1(x2,y2+t1,colorm)=mod(i,255);
-%                 end
+                while(surr<8&((x1-surr)>0)&((x2-surr)>0)&((y1-surr)>0)&((y2-surr)>0)&((x1+surr)<w)&((x2+surr)<w)&((y1+surr)<h)&((y2+surr)<h)&(imacopy(x1,y1,1)==imacopy(x1,y1,2)&imacopy(x1,y1,2)==imacopy(x1,y1,3))&(imacopy(x1-surr:x1+surr,y1-surr:y1+surr,1)==imacopy(x2-surr:x2+surr,y2-surr:y2+surr,1)))
+                    surr=surr+1;
+                end
+                surr=surr-1;
+                disp(surr);
+            
+                color=255*rand;
+                colorm=mod(i,3)+1;
+                for t1=-surr:surr
+                        imacopy1(x1+t1,y1,:)=[0,0,0];
+                        imacopy1(x1,y1+t1,:)=[0,0,0];
+                        imacopy1(x2,y2+t1,:)=[0,0,0];
+                        imacopy1(x2+t1,y2,:)=[0,0,0];
+                        imacopy1(x1+t1,y1,colorm)=mod(i,255);
+                        imacopy1(x1,y1+t1,colorm)=mod(i,255);
+                        imacopy1(x2+t1,y2,colorm)=mod(i,255);
+                        imacopy1(x2,y2+t1,colorm)=mod(i,255);
+                end
                  line([x1,x2],[y1,y2],'LineWidth',1);
                  imacopy1 = insertShape(imacopy1,'Line',[y1 x1 y2 x2],'LineWidth',1);
                         disp(x1);
