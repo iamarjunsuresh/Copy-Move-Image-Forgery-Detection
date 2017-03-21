@@ -64,7 +64,7 @@ for k=1:numofsets
                             bin=bin+1;
                             
                             
-                            vect{k,i,idx*8+bin}=vect{k,i,idx*8+bin} +(1/sqrt((p-f)^2+(q-h)^2));
+                            vect{k,i,idx*8+bin}=vect{k,i,idx*8+bin} +sqrt(dx^2+dy^2);
                             disp(vect{k,i,idx*8+bin});
                             disp(idx*8+bin);
                             %input('same','s');

@@ -33,10 +33,12 @@ D(i)=mat2cell(zeros(row*2^(2-i)+2,colum*2^(2-i)+2,level),row*2^(2-i)+2,colum*2^(
 end
 % first image in first octave is created by interpolating the original one.
 temp_img=kron(img,ones(2));
+imshow(temp_img);
+
 temp_img=padarray(temp_img,[1,1],'replicate');
 figure(2)
 subplot(1,2,1);
-imshow(origin)
+imshow(origin);
 %create the DoG pyramid.
 for i=1:octave
     temp_D=D{i};

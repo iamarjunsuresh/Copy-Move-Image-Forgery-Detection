@@ -75,7 +75,7 @@ for a=1:octaves
                         disp(y2); 
                         disp(x1);
                            
-                       sd=input('pause:','s');   
+                  %     sd=input('pause:','s');   
 end
         end
         disp(strcat('completed:',int2str(i/no_of_siftvectors*100)));
