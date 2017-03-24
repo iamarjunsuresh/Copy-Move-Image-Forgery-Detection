@@ -1,0 +1,1 @@
+ff=octavegen('samples/face5.bmp');

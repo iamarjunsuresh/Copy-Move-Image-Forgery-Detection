@@ -1,6 +1,6 @@
 echo off;
 %sift 
-dog=octavegen('samples/prave.bmp')
+dog=octavegen('samples/face5.bmp')
 if(iscell(dog)==0)
    disp('error');
 end
